@@ -1,6 +1,8 @@
 from pokercalculator.hand import Hand
 from pokercalculator.card import Card
 from pokercalculator.hand_rank import HandRank
+from pokercalculator.rank import Rank
+from pokercalculator.suit import Suit
 
 def test_from_string():
     input = "7D 2S 3C JD 2H"
@@ -72,3 +74,29 @@ def test_evaluate():
     input = "KS QS TS JS AS"
     hand = Hand(Hand.from_string(input))
     assert hand._Hand__evaluate() == HandRank.ROYAL_FLUSH
+def test_is_straight_true():
+    cards = [
+            Card.from_string("7D"),
+            Card.from_string("2S"),
+            Card.from_string("3C"),
+            Card.from_string("JD"),
+            Card.from_string("2H")
+        ]
+    hand = Hand(cards) 
+    rank_numbers = [2, 3, 4, 5, 6]
+    result = hand._Hand__is_straight(rank_numbers)
+    assert result==True
+    rank_numbers = [1, 8, 4, 6, 7]
+    result = hand._Hand__is_straight(rank_numbers)
+    assert result == False
+    
+def test_is_royal_true():
+        #Escalera Real
+        cards = [Card(Rank.TEN, Suit.HEARTS), Card(Rank.JACK, Suit.HEARTS), Card(Rank.QUEEN, Suit.HEARTS), Card(Rank.KING, Suit.HEARTS), Card(Rank.ACE, Suit.HEARTS)]
+        hand = Hand(cards) 
+        result = hand._Hand__is_royal(cards)  
+        assert result==True
+        cards = [Card(Rank.NINE, Suit.HEARTS), Card(Rank.JACK, Suit.HEARTS), Card(Rank.QUEEN, Suit.HEARTS), Card(Rank.KING, Suit.HEARTS), Card(Rank.ACE, Suit.HEARTS)]
+        hand = Hand(cards) 
+        result = hand._Hand__is_royal(cards)  
+        assert result==False
