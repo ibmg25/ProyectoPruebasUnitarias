@@ -5,7 +5,7 @@ from pokercalculator.rank import Rank
 from pokercalculator.suit import Suit
 
 calculator = Calculator("./txts/winner1.txt")
-
+c=Calculator("./pokerdata.txt")
 
 hand1 = Hand([Card(Rank.ACE, Suit.SPADES),
         Card(Rank.ACE, Suit.HEARTS),
@@ -28,9 +28,9 @@ def test_check_winners():
     assert calculator._Calculator__check_winners(hand1, hand2) < 2
     assert calculator._Calculator__check_winners(hand1, hand1) >= 2
     
-def __str__():
-    expected_output = "Total Games: 1\nPlayer 1: 2\nPlayer 2: 0\nTie: 0" 
-    assert calculator.__Calculator____str__() == expected_output
+def test_str__():
+    expected_output = "Total Games: 1000\nPlayer 1: 376\nPlayer 2: 624\nTie: 0" 
+    assert c.__str__() == expected_output
 def test_break_tie():
     #han1 gana royal_flush
     hand1 = Hand([Card(Rank.TEN, Suit.HEARTS), Card(Rank.JACK, Suit.HEARTS), Card(Rank.QUEEN, Suit.HEARTS), Card(Rank.KING, Suit.HEARTS), Card(Rank.ACE, Suit.HEARTS)])
