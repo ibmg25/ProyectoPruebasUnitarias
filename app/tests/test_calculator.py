@@ -6,6 +6,7 @@ from pokercalculator.suit import Suit
 
 calculator = Calculator("./txts/winner1.txt")
 
+
 hand1 = Hand([Card(Rank.ACE, Suit.SPADES),
         Card(Rank.ACE, Suit.HEARTS),
         Card(Rank.FIVE, Suit.DIAMONDS),
@@ -26,3 +27,7 @@ def test_check_winners_helper():
 def test_check_winners():
     assert calculator._Calculator__check_winners(hand1, hand2) < 2
     assert calculator._Calculator__check_winners(hand1, hand1) >= 2
+    
+def __str__():
+    expected_output = "Total Games: 1\nPlayer 1: 1\nPlayer 2: 0\nTie: 0" 
+    assert calculator.__str__() == expected_output
